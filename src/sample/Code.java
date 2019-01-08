@@ -33,11 +33,11 @@ public class Code extends Application {
         primaryStage.setTitle("Cookie Clicker");
         primaryStage.setScene(scene);
 
-        root.setAlignment(Pos.CENTER_RIGHT);
+        root.setAlignment(Pos.CENTER);
         root.setSpacing(10);
 
         HBox buttonContainer = new HBox();
-        buttonContainer.setAlignment(Pos.CENTER_RIGHT);
+        buttonContainer.setAlignment(Pos.CENTER);
         buttonContainer.setSpacing(50);
 
 
@@ -51,13 +51,20 @@ public class Code extends Application {
         timerLabel.setTextFill(Color.RED);
         timerLabel.setStyle("-fx-font-size: 4em;");
 
+        this.count.setStyle("-fx-font-size: 2em;");
+        this.count.setTextFill(Color.BLUE);
+
         button2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if(timeline != null){
                     timeline.stop();
                 }
-
+                if(counter>=0)
+                {
+                    counter=0;
+                    timeSeconds=STARTTIME;
+                }
                 timerLabel.setText(timeSeconds.toString());
                 timeline = new Timeline();
                 timeline.setCycleCount(Timeline.INDEFINITE);
@@ -79,7 +86,6 @@ public class Code extends Application {
                                         if(timeSeconds <= 0)
                                         {
                                             timeline.stop();
-
                                         }
                                     }
                                 }));
